@@ -1,0 +1,4 @@
+numpy
+picamera
+Pillow
+gpiozero
