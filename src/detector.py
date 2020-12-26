@@ -32,7 +32,6 @@ import picamera
 from PIL import Image
 from tflite_runtime.interpreter import Interpreter
 
-
 from gpiozero import LED
 
 
@@ -47,8 +46,7 @@ def load_labels(path):
   with open(path, 'r', encoding='utf-8') as f:
     lines = f.readlines()
     labels = {}
-    for row_nfrom gpiozero import LED
-umber, content in enumerate(lines):
+    for row_number, content in enumerate(lines):
       pair = re.split(r'[:\s]+', content.strip(), maxsplit=1)
       if len(pair) == 2 and pair[0].strip().isdigit():
         labels[int(pair[0])] = pair[1].strip()
@@ -149,14 +147,26 @@ def main():
         annotate_objects(annotator, results, labels)
         try:
             print(results[0]['class_id'])
-            if results[0]['class_id'] = 46.0:
-                print("CUP!!!!")
-                led.on()
-                time.sleep(5)
-                led.off()
+            if results[0]['class_id'] in [46.0, 16.0, 17.0]:
+                if results[0]['class_id'] = 46.0:
+                    print("Cup!!!!")
+                    led.on()
+                    time.sleep(2)
+                    led.off()
+                if results[0]['class_id'] = 16.0:
+                    print("Cat !!!!")
+                    for i in range(10)
+                    led.on()
+                    time.sleep(1)
+                    led.off()
+                    time.sleep(1)
+                if if results[0]['class_id'] = 17.0:
+                    print("Dog !!!!")
+                    led.on()
+                    time.sleep(2)
+                    led.off()
         except:
           print("")
-
 
         annotator.text([5, 0], '%.1fms' % (elapsed_ms))
         annotator.update()
