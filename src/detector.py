@@ -151,7 +151,7 @@ def main():
                       led_red.on()
                       time.sleep(.1)
                       led_red.off()
-                if if results[0]['class_id'] == 17.0:
+                if results[0]['class_id'] == 17.0:
                     print("Dog !!!!")
                     led_grn.on()
                     time.sleep(2)
