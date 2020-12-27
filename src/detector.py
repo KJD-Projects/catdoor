@@ -19,7 +19,7 @@ from tflite_runtime.interpreter import Interpreter
 from gpiozero import LED
 
 
-led = LED(25)
+led_grn = LED(25)
 
 CAMERA_WIDTH = 640
 CAMERA_HEIGHT = 480
@@ -134,21 +134,21 @@ def main():
             if results[0]['class_id'] in [46.0, 16.0, 17.0]:
                 if results[0]['class_id'] == 46.0:
                     print("Cup!!!!")
-                    led.on()
+                    led_grn.on()
                     time.sleep(2)
-                    led.off()
+                    led_grn.off()
                 if results[0]['class_id'] == 16.0:
                     print("Cat !!!!")
-                    for i in range(10)
-                    led.on()
-                    time.sleep(1)
-                    led.off()
-                    time.sleep(1)
+                    for i in range(10):
+                      led_grn.on()
+                      time.sleep(1)
+                      led_grn.off()
+                      time.sleep(1)
                 if if results[0]['class_id'] == 17.0:
                     print("Dog !!!!")
-                    led.on()
+                    led_grn.on()
                     time.sleep(2)
-                    led.off()
+                    led_grn.off()
         except:
           print("")
 
