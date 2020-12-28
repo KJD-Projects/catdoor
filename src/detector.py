@@ -16,11 +16,9 @@ import picamera
 from PIL import Image
 from tflite_runtime.interpreter import Interpreter
 
-from gpiozero import LED
+from motor.motor import Motor
 
-
-led_grn = LED(25)
-led_red = LED(8)
+blink = Motor()
 
 CAMERA_WIDTH = 640
 CAMERA_HEIGHT = 480
@@ -130,32 +128,22 @@ def main():
         elapsed_ms = (time.monotonic() - start_time) * 1000
         annotator.clear()
         annotate_objects(annotator, results, labels)
+        
         try:
             print(results[0]['class_id'])
             if results[0]['class_id'] in [46.0, 16.0, 17.0]:
                 if results[0]['class_id'] == 46.0:
                     print("Cup!!!!")
-                    for i in range(10):
-                      led_grn.on()
-                      time.sleep(.1)
-                      led_grn.off()
-                      led_red.on()
-                      time.sleep(.1)
-                      led_red.off()
+                    blink.found_cup()
+                    
                 if results[0]['class_id'] == 16.0:
                     print("Cat !!!!")
-                    for i in range(10):
-                      led_grn.on()
-                      time.sleep(.1)
-                      led_grn.off()
-                      led_red.on()
-                      time.sleep(.1)
-                      led_red.off()
+                    blink.found_cat()
+
                 if results[0]['class_id'] == 17.0:
                     print("Dog !!!!")
-                    led_grn.on()
-                    time.sleep(2)
-                    led_grn.off()
+                    blink.found_dog()
+
         except:
           print("")
 
